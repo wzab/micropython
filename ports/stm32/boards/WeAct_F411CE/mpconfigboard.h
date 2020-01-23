@@ -8,7 +8,7 @@
 void WeAct_Core_board_early_init(void);
 
 /* BOARD Ver 2.0 set 1 ，other set 0 */
-#define VERSION_V20 (0)
+#define VERSION_V20 (1)
 
 /* 使用内置flash改1 使用外置flash请改0 */
 #define MICROPY_HW_ENABLE_INTERNAL_FLASH_STORAGE (1)
