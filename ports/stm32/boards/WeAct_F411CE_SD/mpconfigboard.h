@@ -22,9 +22,11 @@ void WeAct_Core_board_early_init(void);
 #define MICROPY_HW_ENABLE_RNG       (0)
 
 //SD card definitions
-#define MICROPY_HW_SDMMC_D3 (pin_B5)
-#define MICROPY_HW_SDMMC_D2 (pin_A9)
-#define MICROPY_HW_SDMMC_D1 (pin_A8)
+//Uncomment definitions for D1, D2 and D3 if BUS_WIDTH=4
+#define MICROPY_HW_SDMMC_BUS_WIDTH (1)
+//#define MICROPY_HW_SDMMC_D3 (pin_B5)
+//#define MICROPY_HW_SDMMC_D2 (pin_A9)
+//#define MICROPY_HW_SDMMC_D1 (pin_A8)
 #define MICROPY_HW_SDMMC_D0 (pin_B4)
 #define MICROPY_HW_SDMMC_CMD (pin_A6)
 #define MICROPY_HW_SDMMC_CK (pin_B15)
