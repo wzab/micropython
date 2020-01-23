@@ -9,7 +9,7 @@
 #define MICROPY_HW_ENABLE_DAC       (1)
 #define MICROPY_HW_ENABLE_USB       (1)
 #define MICROPY_HW_ENABLE_SDCARD    (0)
-#define MICROPY_HW_HAS_SWITCH       (1)
+#define MICROPY_HW_HAS_SWITCH       (0)
 #define MICROPY_HW_HAS_FLASH        (1)
 
 #define MICROPY_BOARD_EARLY_INIT    NUCLEO_H743ZI_board_early_init
@@ -92,9 +92,9 @@ void NUCLEO_H743ZI_board_early_init(void);
 #define MICROPY_HW_CAN2_RX    (pin_B12)
 
 // SD card detect switch
-#define MICROPY_HW_SDCARD_DETECT_PIN        (pin_G2)
-#define MICROPY_HW_SDCARD_DETECT_PULL       (GPIO_PULLUP)
-#define MICROPY_HW_SDCARD_DETECT_PRESENT    (GPIO_PIN_RESET)
+//#define MICROPY_HW_SDCARD_DETECT_PIN        (pin_G2)
+//#define MICROPY_HW_SDCARD_DETECT_PULL       (GPIO_PULLUP)
+//#define MICROPY_HW_SDCARD_DETECT_PRESENT    (GPIO_PIN_RESET)
 
 // Ethernet via RMII (MDC define disabled for now until eth.c supports H7)
 //#define MICROPY_HW_ETH_MDC          (pin_C1)
