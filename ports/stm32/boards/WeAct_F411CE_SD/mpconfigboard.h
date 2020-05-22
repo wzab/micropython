@@ -27,7 +27,7 @@ void WeAct_Core_board_early_init(void);
 //#define MICROPY_HW_SDMMC_D3 (pin_B5)
 //#define MICROPY_HW_SDMMC_D2 (pin_A9)
 //#define MICROPY_HW_SDMMC_D1 (pin_A8)
-#define MICROPY_HW_SDMMC_D0 (pin_B4)
+#define MICROPY_HW_SDMMC_D0 (pin_B7)
 #define MICROPY_HW_SDMMC_CMD (pin_A6)
 #define MICROPY_HW_SDMMC_CK (pin_B15)
 
