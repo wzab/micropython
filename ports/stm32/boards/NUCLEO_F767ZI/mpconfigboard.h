@@ -1,6 +1,9 @@
 // Note: if the board shows odd behaviour check the option bits and make sure nDBANK is
 // set to make the 2MByte space continuous instead of divided into two 1MByte segments.
 
+#define MICROPY_PY_THREAD (1)
+#define MICROPY_PY_THREAD_GIL (1)
+
 #define MICROPY_HW_BOARD_NAME       "NUCLEO-F767ZI"
 #define MICROPY_HW_MCU_NAME         "STM32F767"
 

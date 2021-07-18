@@ -1,7 +1,10 @@
 #define MICROPY_HW_BOARD_NAME       "NetduinoPlus2"
 #define MICROPY_HW_MCU_NAME         "STM32F405RG"
 
-#define MICROPY_HW_HAS_SWITCH       (1)
+#define MICROPY_HW_UART_REPL        PYB_UART_3
+#define MICROPY_HW_UART_REPL_BAUD   115200
+
+#define MICROPY_HW_HAS_SWITCH       (0)
 
 #define MICROPY_HW_HAS_FLASH        (1)
 // On the netuino, the sdcard appears to be wired up as a 1-bit
@@ -9,7 +12,7 @@
 // we can turn this on.
 #define MICROPY_HW_ENABLE_SDCARD    (0)
 #define MICROPY_HW_ENABLE_RNG       (1)
-#define MICROPY_HW_ENABLE_USB       (1)
+#define MICROPY_HW_ENABLE_USB       (0)
 #define MICROPY_HW_ENABLE_SERVO     (1)
 
 void NETDUINO_PLUS_2_board_early_init(void);
