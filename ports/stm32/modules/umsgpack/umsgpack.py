@@ -766,9 +766,10 @@ def _unpack_map(code, fp, options):
         if isinstance(k, list):
             # Attempt to convert list into a hashable tuple
             k = _deep_list_to_tuple(k)
-        elif not isinstance(k, collections.Hashable):
-            raise UnhashableKeyException(
-                "encountered unhashable key: %s, %s" % (str(k), str(type(k))))
+        # The test below does not work in MicroPython
+        #elif not isinstance(k, collections.Hashable):
+        #    raise UnhashableKeyException(
+        #        "encountered unhashable key: %s, %s" % (str(k), str(type(k))))
         elif k in d:
             raise DuplicateKeyException(
                 "encountered duplicate key: %s, %s" % (str(k), str(type(k))))
@@ -989,11 +990,11 @@ def __init():
     compatibility = False
 
     # Auto-detect system float precision
-    if sys.float_info.mant_dig == 53:
-        _float_precision = "double"
-    else:
-        _float_precision = "single"
-
+    #if sys.float_info.mant_dig == 53:
+    #    _float_precision = "double"
+    #else:
+    #    _float_precision = "single"
+    _float_precision = "double"
     # Map packb and unpackb to the appropriate version
     if sys.version_info[0] == 3:
         pack = _pack3
