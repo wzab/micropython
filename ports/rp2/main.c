@@ -212,6 +212,9 @@ int main(int argc, char **argv) {
         #if MICROPY_PY_THREAD
         mp_thread_deinit();
         #endif
+        #if MICROPY_HW_ENABLE_USB_RUNTIME_DEVICE
+        mp_usbd_deinit();
+        #endif
         gc_sweep_all();
         mp_deinit();
     }

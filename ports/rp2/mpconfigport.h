@@ -52,6 +52,11 @@
 #ifndef MICROPY_HW_USB_MSC
 #define MICROPY_HW_USB_MSC (0)
 #endif
+
+#ifndef MICROPY_HW_ENABLE_USB_RUNTIME_DEVICE
+// Enable to use the 'usbd' module
+#define MICROPY_HW_ENABLE_USB_RUNTIME_DEVICE    (0)
+#endif
 #endif
 
 #ifndef MICROPY_CONFIG_ROM_LEVEL
