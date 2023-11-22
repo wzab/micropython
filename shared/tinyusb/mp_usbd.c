@@ -27,6 +27,11 @@
 #include <stdlib.h>
 
 #include "py/mpconfig.h"
+#include "py/mperrno.h"
+#include "py/mphal.h"
+#include "py/obj.h"
+#include "py/objarray.h"
+#include "py/objstr.h"
 #include "py/runtime.h"
 
 #if MICROPY_HW_ENABLE_USBDEV
@@ -36,30 +41,35 @@
 #include "device/dcd.h"
 #include "device/usbd.h"
 #include "device/usbd_pvt.h"
+#include "mp_usbd_internal.h"
 #endif
 
-// TinyUSB task function wrapper, as scheduled from the USB IRQ
-static void mp_usbd_task_callback(mp_sched_node_t *node);
-
-extern void __real_dcd_event_handler(dcd_event_t const *event, bool in_isr);
+#if !MICROPY_HW_ENABLE_USB_RUNTIME_DEVICE
 
 void mp_usbd_task(void) {
     tud_task_ext(0, false);
 }
 
+#endif // !MICROPY_HW_ENABLE_USB_RUNTIME_DEVICE
+
+extern void __real_dcd_event_handler(dcd_event_t const *event, bool in_isr);
+
 // If -Wl,--wrap=dcd_event_handler is passed to the linker, then this wrapper
 // will be called and allows MicroPython to schedule the TinyUSB task when
 // dcd_event_handler() is called from an ISR.
 TU_ATTR_FAST_FUNC void __wrap_dcd_event_handler(dcd_event_t const *event, bool in_isr) {
-    static mp_sched_node_t usbd_task_node;
-
     __real_dcd_event_handler(event, in_isr);
-    mp_sched_schedule_node(&usbd_task_node, mp_usbd_task_callback);
+    mp_usbd_schedule_task();
 }
 
-static void mp_usbd_task_callback(mp_sched_node_t *node) {
+STATIC void mp_usbd_task_callback(mp_sched_node_t *node) {
     (void)node;
     mp_usbd_task();
+}
+
+TU_ATTR_FAST_FUNC void mp_usbd_schedule_task(void) {
+    static mp_sched_node_t usbd_task_node;
+    mp_sched_schedule_node(&usbd_task_node, mp_usbd_task_callback);
 }
 
 void mp_usbd_hex_str(char *out_str, const uint8_t *bytes, size_t bytes_len) {
