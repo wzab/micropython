@@ -70,6 +70,11 @@
 // SAMD unique ID is 16 bytes (hex string == 32)
 #ifndef MICROPY_HW_USB_DESC_STR_MAX
 #define MICROPY_HW_USB_DESC_STR_MAX (32)
+
+#ifndef MICROPY_HW_ENABLE_USB_RUNTIME_DEVICE
+// Enable to use the 'usbd' module
+#define MICROPY_HW_ENABLE_USB_RUNTIME_DEVICE    (0)
+#endif
 #endif
 
 #endif
